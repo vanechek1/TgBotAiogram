@@ -112,25 +112,16 @@ async def info(message: types.Message):
     markup.add(types.InlineKeyboardButton('Hello', callback_data='hello'))
     await message.reply('Hello', reply_markup=markup)
 
-@dp.callback_query_handler(lambda c: c.data in ['question'])
-async def callback(call: types.CallbackQuery):
-    if call.data == 'question':
-        await bot.answer_callback_query(call.id)
-        await bot.send_message(call.from_user.id, 'Хороший вопрос, подумай сам')
+# @dp.callback_query_handler(lambda c: c.data in ['question'])
+# async def callback(call: types.CallbackQuery):
+#     if call.data == 'question':
+#         await bot.answer_callback_query(call.id)
+#         await bot.send_message(call.from_user.id, 'Хороший вопрос, подумай сам')
+#
 
-
-@dp.message_handler(commands=['reply'])
-async def reply(message: types.Message):
-    markup = types.ReplyKeyboardMarkup(one_time_keyboard=True) # после нажатия кнопки пропадут
-    markup.add(types.KeyboardButton('site'))
-    markup.add(types.KeyboardButton('website'))
-    await message.answer('Hello', reply_markup=markup)
-
-
-
-@dp.callback_query_handler()
-async def callback(call):
-    await call.message.answer(call.data)
+# @dp.callback_query_handler()
+# async def callback(call):
+#     await call.message.answer(call.data)
 
 create_connection()
 
